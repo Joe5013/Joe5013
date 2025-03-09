@@ -1,0 +1,41 @@
+Sign Files & include the Timestamp so signature does not expire.
+
+As part of this process you will need to know the URL of Comodo’s time stamping server, which is 
+http://timestamp.comodoca.com/authenticode
+
+==============================
+
+SignWizard... This works & gives good error messages.
+
+1) make Setup.exe not "read only" using file properties
+C:\Program Files\Microsoft Platform SDK>signtool signwizard /v
+Invoking Signing Wizard: <>
+Successfully completed signing wizard: <>
+
+==============================
+
+Signtool Function...  This works - Quicker than wizard!
+
+1) make Setup.exe not "read only" using file properties
+C:\Program Files\Microsoft Platform SDK>signtool sign /a /v /t http://timestamp.comodoca.com/authenticode "C:\SigningFolder\SETUP.EXE"
+The following certificate was selected:
+    Issued to: ArenaSoft, LLC
+    Issued by: UTN-USERFirst-Object
+    Expires:   6/7/2007 7:59:59 PM
+    SHA1 hash: 386113EE96C871DF96C35481D5C59043EFE77DAA
+
+
+Attempting to sign: C:\SigningFolder\SETUP.EXE
+Successfully signed and timestamped: C:\SigningFolder\SETUP.EXE
+
+Number of files successfully Signed: 1
+Number of warnings: 0
+Number of errors: 0
+
+===================================
+
+To test a signed .exe, .dll or .ocx file, run chktrust C:\SigningFolder\SETUP.EXE
+To test a signed cab file, run chktrust -c cabfilename.cab
+
+C:\Program Files\Microsoft Platform SDK>chktrust "C:\Documents and Settings\jarena.BBLINC\My Documents\Joe's Folder\ArenaSoft - Joe\Software Development\Package 2R76r7 BCCD 2005\AE FE 04-05-20 BCCD2005 2R76r7_2005-06-29_(1) Setup Signed\SETUP.EXE"
+C:\Documents and Settings\jarena.BBLINC\My Documents\Joe's Folder\ArenaSoft - Joe\Software Development\Package 2R76r7 BCCD 2005\AE FE 04-05-20 BCCD2005 2R76r7_2005-06-29_(1) Setup Signed\SETUP.EXE: Succeeded
