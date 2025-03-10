@@ -1,0 +1,18 @@
+Let me clarify AS Tables 2025-03-09.xlsx Structure
+
+Row 1: A: tblArenaEvents 
+Row 2: B: EventID, C: Number, D: Long Integer 
+Row 3: B: EventName, C: Text, D: 50 
+Row 4: B: EventDate, C: Date/Time, D: 
+Row 5: (blank) 
+Row 6: B: tblArenaEvents_tblParticipants (relation name is... 2 tablenames as 1 word) 
+Row 7: E: tblArenaEvents, F: tblParticipants (relation tablenames) 
+Row 8: E: "Name", F: "ForeignName" (Primary & Foreign key labels) 
+Row 9: E: EventID, F: EventID (Primary & Foreign key field names) 
+Row 10: B & C: lists Attibutes of relationship 
+Row 11: B & C: relationship type like... 1 to many 
+Row 12: This starts another relation similar to row 6 thru 11 
+or
+Row 12 is a blank row which indicates Row 13 starts a new table if there is text in column A
+
+This pattern repeats over and over for each table. If there is a blank row and the next row has text in col A then that's a new Table. If there is a blank row and the next row has text in col B then that's a relationship. There can be 0 or several realationships for a table. You can create a .sql file in my Repo, or paste the text here repeatedly until 43 tables are shown.
